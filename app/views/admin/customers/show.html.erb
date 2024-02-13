@@ -1,7 +1,4 @@
-<h4>マイページ</h4>
-
-<p>登録情報</p>
-<p><%= link_to '編集する', edit_customers_path, class: "btn btn-success" %></p>
+<h2><%= @customer.last_name + @customer.first_name %>さんの会員詳細</h2>
 
 <table class="table table-bordered">
   <tbody>
@@ -32,6 +29,7 @@
   </tbody>
 </table>
 
-<p>注文履歴</p>
-<p><%= link_to '一覧を見る', orders_path, class: "btn btn-primary" %></p>
+<p><%= link_to '編集する', edit_admin_customer_path(@customer.id), class: "btn btn-success" %></p>
+
+<p><%= link_to '注文履歴一覧を見る', admin_path, class: "btn btn-primary" %></p>
 

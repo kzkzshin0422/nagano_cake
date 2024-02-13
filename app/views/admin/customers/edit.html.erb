@@ -1,8 +1,12 @@
-<h4>会員情報編集</h4>
+<h2><%= @customer.last_name + @customer.first_name %>さんの会員情報編集</h2>
 
-  <%= form_with model: @customer, url: customers_path do |f| %>
-　<table class="table table-bordered">
-  <tbody>
+ <table class="table table-bordered">
+   <tbody>
+    <tr>
+      <th>会員ID</th>
+      <td><%= @customer.id %></td>
+    </tr>
+    <%= form_with model: @customer, url: admin_customer_path do |f| %>
     <tr>
       <th scope="row"><%= f.label :名前 %></th>
       <td><%= f.text_field :last_name %> <%= f.text_field :first_name %></td>
@@ -26,9 +30,8 @@
       <th scope="row"><%= f.label :メールアドレス %></th>
       <td><%= f.text_field :email %></td>
     </tr>
-   <%= f.submit "編集内容を保存",class: "btn btn-success" %>
+   <%= f.submit "変更を保存", class: "btn btn-success" %>
+   <% end %>
   </tbody>
   </table>
-  <% end %>
-
-  <p><%= link_to '退会する',  customers_confirm_path, class: "btn btn-danger" %></p>
+  

@@ -11,7 +11,7 @@ class Public::CustomersController < ApplicationController
   def update
     customer = current_customer
     customer.update(customer_params)
-    redirect_to public_customer_path
+    redirect_to customers_path
   end
   
   def confirm
@@ -19,7 +19,7 @@ class Public::CustomersController < ApplicationController
   
   def withdrawal
     customer = current_customer
-    customer.update(is_valid: false)
+    customer.update(is_active: false)
     reset_session
     redirect_to root_path
   end
