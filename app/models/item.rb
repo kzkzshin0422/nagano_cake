@@ -1,7 +1,11 @@
 class Item < ApplicationRecord
   
   has_one_attached :profile_image
-  has_many :cart_item
+  has_many :cart_items, dependent: :destroy
+  has_many :orderdetails, dependent: :destroy
+  
+  validates :name, presence: true
+  validates :introduction, presence: true
   
   def get_profile_image(width, height)
     unless profile_image.attached?
@@ -9,6 +13,10 @@ class Item < ApplicationRecord
       profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
+  end
+  
+  def with_tax_price
+    (price * 1.1).floor
   end
   
 end

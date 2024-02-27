@@ -7,29 +7,68 @@
     <%= csp_meta_tag %>
 
     <script src="https://kit.fontawesome.com/7d266f9e79.js" crossorigin="anonymous"></script>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <body>
-    <header>
-    <% if admin_signed_in? %>
-      <li>
-        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-      </li>
-    
-    <% elsif customer_signed_in? %>
-      <li>
-        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "新規登録", new_customer_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_customer_session_path %>
-      </li>
-    <% end %>
+  <body class="d-flex flex-column vh-100">
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand p-2" href="/"><%= image_tag 'cake_logo.png', :size => '50x50' %></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                  <% if admin_signed_in? %>
+                    <li class="nav-item">
+                      <%= link_to "商品一覧", admin_items_path, class: 'nav-link text-dark' %>
+                    </li>
+                    <li class="nav-item">
+                      <%= link_to "会員一覧", admin_customers_path, class: 'nav-link text-dark' %>
+                    </li>
+                    <li class="nav-item">
+                      <%= link_to "注文履歴一覧", admin_path, class: 'nav-link text-dark' %>
+                    </li>
+                    <li class="nav-item">
+                      <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+                    </li>
+                  <% elsif customer_signed_in? %>
+                    <li class="nav-item">
+                      <%= link_to "マイページ", customers_path(current_customer), class: 'nav-link text-dark' %>
+                    </li>
+                    <li class="nav-item">
+                      <%= link_to "商品一覧", items_path, class: 'nav-link text-dark' %>
+                    </li>
+                    <li class="nav-item">
+                      <%= link_to "カート", cart_items_path, class: 'nav-link text-dark' %>
+                    </li>
+                    <li class="nav-item">
+                      <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
+                    </li>
+                  <% else %>
+                    <li class="nav-item">
+                      <%= link_to "About", about_path, class: 'nav-link text-dark' %>
+                    </li>
+                    <li class="nav-item">
+                      <%= link_to "商品一覧", items_path, class: 'nav-link text-dark' %>
+                    </li>
+                    <li class="nav-item">
+                      <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-dark' %>
+                    </li>
+                    <li class="nav-item">
+                      <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-dark' %>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+        </div>
+      </nav>
+      <form class="form-inline float-right">
+       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
     </header>
     <%= yield %>
   </body>

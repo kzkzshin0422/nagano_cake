@@ -1,7 +1,15 @@
-<h2><%= @customer.last_name + @customer.first_name %>さんの会員詳細</h2>
+<div class="container mt-3">
+ <div class="mb-3">
+   <h4><%= @customer.last_name + @customer.first_name %>さんの会員詳細</h4>
+ </div>
 
-<table class="table table-bordered">
-  <tbody>
+ <div class="col-8">
+  <table class="table table-bordered">
+    <tbody>
+    <tr>
+      <th scope="row">会員ID</th>
+      <td><%= @customer.id %></td>
+    </tr>
     <tr>
       <th scope="row">氏名</th>
       <td><%= @customer.last_name %> <%= @customer.first_name %></td>
@@ -26,10 +34,12 @@
       <th scope="row">メールアドレス</th>
       <td><%= @customer.email %></td>
     </tr>
-  </tbody>
-</table>
+   </tbody>
+  </table>
+</div>
 
 <p><%= link_to '編集する', edit_admin_customer_path(@customer.id), class: "btn btn-success" %></p>
 
 <p><%= link_to '注文履歴一覧を見る', admin_path, class: "btn btn-primary" %></p>
 
+</div>

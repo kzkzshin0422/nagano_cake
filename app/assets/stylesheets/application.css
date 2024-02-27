@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+
+.relative{
+  position: relative;
+}
+.absolute{
+  position: absolute;
+  top: 100px;
+  left: 50px;
+
+}
+
+.top-img {
+  opacity: 0.3;
+}

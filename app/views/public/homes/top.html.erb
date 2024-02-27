@@ -1,12 +1,33 @@
-背景に画像あり
-<h4>ようこそ、ながのCAKEへ！<br>
-    このサイトは、ケーキ販売のECサイトになります。<br>
-    会員でない方も商品の閲覧はできますが、<br>
-    購入には会員登録が必要になります。
-</h4>
-<h2>新着商品</h2>
-  <% @items.each do |item| %>
-   <div><%= image_tag item.get_profile_image(100,100) %></div>
-   <div><%= item.name %></div>
-   <div><%= item.price %></div>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-9">
+      <div class=" mx-auto">
+        <div class="mt-3 relative row">
+          <%= image_tag "shortcake.png", class: "top-img", :size => '420x270' %>
+            <h6 class="absolute">
+              ようこそ、ながのCAKEへ！<br>
+              このサイトは、ケーキ販売のECサイトになります。<br>
+              会員でない方も商品の閲覧はできますが、<br>
+              購入には会員登録が必要になります。
+            </h6>
+        </div>
+      </div>
+      <div class="mt-3 mb-3">
+        <h4>新着商品</h4>
+      </div>
+      <div class="row">
+          <% @items.each do |item| %>
+          <div class="col-3">
+            <%= link_to item_path(item.id) do %>
+              <%= image_tag item.get_profile_image(150,150) %>
+            <% end %>
+          　<div><%= item.name %></div>
+            <div><%= item.price %></div>
+          </div>
+          <% end %>
+          </div>
+          <%= link_to "全ての商品を見る", items_path %>
+     </div>
+  </div>
+</div>

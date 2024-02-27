@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_02_12_000616) do
+ActiveRecord::Schema.define(version: 2024_02_22_062816) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -61,7 +61,9 @@ ActiveRecord::Schema.define(version: 2024_02_12_000616) do
   end
 
   create_table "cart_items", force: :cascade do |t|
-    t.string "amount", null: false
+    t.integer "amount", null: false
+    t.integer "customer_id", null: false
+    t.integer "item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -95,14 +97,28 @@ ActiveRecord::Schema.define(version: 2024_02_12_000616) do
   create_table "items", force: :cascade do |t|
     t.string "name", null: false
     t.string "introduction", null: false
-    t.string "price", null: false
+    t.integer "price", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "orderdetails", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "item_id", null: false
+    t.integer "price", null: false
+    t.integer "amount", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "orders", force: :cascade do |t|
     t.string "postage", null: false
-    t.string "payment_method", null: false
+    t.integer "payment_method", null: false
+    t.integer "customer_id", null: false
+    t.integer "total_payment", null: false
+    t.string "name", null: false
+    t.string "address", null: false
+    t.string "postal_code", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

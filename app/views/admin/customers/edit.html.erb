@@ -1,6 +1,7 @@
-<h2><%= @customer.last_name + @customer.first_name %>さんの会員情報編集</h2>
+<div class="container mt-3 mb-3">
+<h4><%= @customer.last_name + @customer.first_name %>さんの会員情報編集</h4>
 
- <table class="table table-bordered">
+ <table class="table table-borderless">
    <tbody>
     <tr>
       <th>会員ID</th>
@@ -30,8 +31,12 @@
       <th scope="row"><%= f.label :メールアドレス %></th>
       <td><%= f.text_field :email %></td>
     </tr>
-   <%= f.submit "変更を保存", class: "btn btn-success" %>
+    <tr>
+      <td></td>
+      <td><%= f.submit "変更を保存", class: "btn btn-success" %></td>
+    </tr>
    <% end %>
   </tbody>
   </table>
+  </div>
   

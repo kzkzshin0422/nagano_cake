@@ -1,67 +1,111 @@
-<h2>新規会員登録</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
-
-  <p>名前</p>
-  <div class="field">
-  <%= f.label :（姓）%><br>
-  <%= f.text_field :last_name %>
+<div class="container">
+  <div class="mt-3 mb-3">
+    <h4>新規会員登録</h4>
   </div>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "public/shared/error_messages", resource: resource %>
+         <div class="col-9">
+          <table class= "table table-borderless">
+            <tr>
+            <td scope="col" style="width: 40%">名前</td>
+            <td scope="col" style="width: 10%">
+              <%= f.label :last_name, "（姓）" %>
+            </td>
+            <td scope="col" style="width: 10%">
+              <%= f.text_field :last_name %>
+            </td>
+            <td scope="col" style="width: 5%">
+            <%= f.label :first_name, "（名）" %>
+            </td>
+            <td scope="col" style="width: 20%">
+            <%= f.text_field :first_name %>
+            </td>
+            </tr>
+            
+            <tr>
+            <td>フリガナ</td>
+            <td>
+              <%= f.label :last_name_kana, "(セイ)" %>
+            </td>
+            <td>
+              <%= f.text_field :last_name_kana %>
+            </td>
+            <td>
+            <%= f.label :first_name_kana, "(メイ)" %>
+            </td>
+            <td>
+            <%= f.text_field :first_name_kana %>
+            </td>
+            </tr>
+            
+            <tr>
+              <td><%= f.label :email, "メールアドレス" %></td>
+              <td></td>
+              <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+              <td></td>
+              <td></td>
+            </tr>
+            
+            <tr>
+            <td><%= f.label :postal_code, "郵便番号（ハイフンなし）" %></td>
+            <td></td>
+            <td><%= f.text_field :postal_code %></td>
+            <td></td>
+            <td></td>
+            </tr>
+          
+            <tr>
+            <td><%= f.label :address, "住所" %></td>
+            <td></td>
+            <td colspan="3"><%= f.text_field :address %></td>
+            </tr>
+          
+            <tr>
+            <td><%= f.label :telephone_number, "電話番号（ハイフンなし）" %></td>
+            <td></td>
+            <td><%= f.text_field :telephone_number %></td>
+            <td></td>
+            <td></td>
+            </tr>
+          
+            
+          
+            <tr>
+              <td>
+              <%= f.label :password, "パスワード" %>
+              <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> 文字以上)</em>
+              <% end %><br />
+              </td>
+              <td></td>
+              <td><%= f.password_field :password, autocomplete: "new-password" %></td>
+              <td></td>
+              <td></td>
+            </tr>
+          
+            <tr>
+              <td><%= f.label :password_confirmation, "パスワード（確認用）" %></td>
+              <td></td>
+              <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+              <td></td>
+              <td></td>
+            </tr>
+          
+            <tr>
+              <td></td>
+              <td></td>
+              <td><%= f.submit "新規登録", class: "btn btn-success" %></td>
+              <td></td>
+              <td></td>
+            </tr>
+          <% end %>
+          </table>
+         </div>
+          
+          <h4>既に登録済みの方</h4>
+          <h8><%= render "public/shared/links" %>からログインしてください。</h8>
   
-  <div class="field">
-  <%= f.label :（名）%><br>
-  <%= f.text_field :first_name %>
-  </div>
+</div>
   
-  <p>フリガナ</p>
-  <div class="field">
-  <%= f.label :（セイ）%><br>
-  <%= f.text_field :last_name_kana %>
-  </div>
-  
-  <div class="field">
-  <%= f.label :（メイ）%><br>
-  <%= f.text_field :first_name_kana %>
-  </div>
 
-  <div class="field">
-  <%= f.label :郵便番号（ハイフンなし）%><br>
-  <%= f.text_field :postal_code %>
-  </div>
-  
-  <div class="field">
-  <%= f.label :住所 %><br>
-  <%= f.text_field :address %>
-  </div>
-  
-  <div class="field">
-  <%= f.label :電話番号（ハイフンなし） %><br>
-  <%= f.text_field :telephone_number %>
-  </div>
 
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :パスワード %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> 文字以上)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :パスワード（確認用） %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "新規登録" %>
-  </div>
-<% end %>
-
-<h2>既に登録済みの方</h2>
-<h4><%= render "public/shared/links" %> からログインしてください。</h4>

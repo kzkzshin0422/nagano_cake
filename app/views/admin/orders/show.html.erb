@@ -1,0 +1,62 @@
+<div class="container mt-3">
+  <h4>注文履歴詳細</h4>
+  <div class="col-10">
+     <table class="table table-borderless">
+        <tr>
+            <th>購入者</th>
+            <td><%= link_to admin_customer_path(@customer.id) do %>
+                <%= @order.name %>
+                <% end %>
+            </td>
+        </tr>
+        <tr>
+            <th>注文日</th>
+            <td><%= @order.created_at.strftime("%Y/%m/%d") %></td>
+        </tr>
+        <tr>
+            <th>配送先</th>
+            <td>〒<%= @order.postal_code %> <%= @order.address %><br>
+                <%= @order.name %>
+            </td>
+        </tr>
+        <tr>
+            <th>支払方法</th>
+            <td><%= @order.payment_method_i18n %></td>
+        </tr>
+      </table>
+  </div>
+  <br>
+  <div class="row">
+  <div class="col-9">
+    <table class="table">
+        <tr>
+            <th>商品名</th>
+            <th>単価(税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+            <% total = 0 %>
+        </tr>
+        <% @order.orderdetails.each do |orderdetail| %>
+        <tr>
+            <td><%= orderdetail.item.name %></td>
+            <td><%= orderdetail.item.with_tax_price %></td>
+            <td><%= orderdetail.amount %></td>
+            <td><%= orderdetail.subtotal %></td>
+        </tr>
+        <% end %>
+    </table>
+  </div>
+  <div class="col-3 ">
+      <strong>商品合計</strong> <%= @total.round.to_s(:delimited) %><br>
+      <strong>送料</strong> <%= @order.postage %><br>
+      <strong>請求金額合計</strong> <%= @order.postage.to_i + @total.to_i %>
+  </div>
+  </div>
+</div>
+
+
+
+
+
+
+
